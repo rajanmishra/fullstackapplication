@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import {MatSelectModule} from '@angular/material/select';
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -21,6 +22,9 @@ import { EmployeeAddComponent } from './component/employee-add/employee-add.comp
 import { EmployeeEditComponent } from './component/employee-edit/employee-edit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReviewsComponent } from './component/reviews/reviews.component';
+import { ReviewAddComponent } from './component/review-add/review-add.component';
+import { ReviewDetailComponent } from './component/review-detail/review-detail.component';
+import { ReviewEditComponent } from './component/review-edit/review-edit.component';
 
 const routes: Routes = [
   {
@@ -48,6 +52,21 @@ const routes: Routes = [
     component: ReviewsComponent,
     data: { title: 'View Reviews' }
   },
+  {
+    path: 'review-details/:id',
+    component: ReviewDetailComponent,
+    data: { title: 'Review Details' }
+  },
+  {
+    path: 'review-add',
+    component: ReviewAddComponent,
+    data: { title: 'Add Review' }
+  },
+  {
+    path: 'review-edit/:id',
+    component: ReviewEditComponent,
+    data: { title: 'Edit Review' }
+  },
   { path: '',
     redirectTo: '/employees',
     pathMatch: 'full'
@@ -62,7 +81,10 @@ const routes: Routes = [
     EmployeeDetailComponent,
     EmployeeAddComponent,
     EmployeeEditComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    ReviewAddComponent,
+    ReviewDetailComponent,
+    ReviewEditComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +102,8 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

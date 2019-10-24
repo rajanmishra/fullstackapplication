@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ReviewService } from '../../service/review.service';
+import { Review } from '../../model/review';
 
 @Component({
   selector: 'app-reviews',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewsComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['firstName', 'lastName', 'designation'];
+  data: Review[] = [];
+  isLoadingResults = true;
+  constructor(private api: ReviewService) { }
 
   ngOnInit() {
+    this.api.getReviews()
+      .subscribe(res => {
+        this.data = res;
+        console.log(this.data);
+        this.isLoadingResults = false;
+      }, err => {
+        console.log(err);
+        this.isLoadingResults = false;
+      });
   }
 
 }

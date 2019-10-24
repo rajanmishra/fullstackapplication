@@ -1,0 +1,66 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/reviews']"><mat-icon>list</mat-icon></a>
+    </div>
+    <mat-card class="example-card">
+      <form [formGroup]="reviewForm" (ngSubmit)="onFormSubmit(reviewForm.value)">
+
+        <!--<mat-form-field class="example-full-width">
+          <input matInput placeholder="Employee Id" formControlName="employeeId"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!reviewForm.get('employeeId').valid && reviewForm.get('employeeId').touched">Please enter Employee Name</span>
+          </mat-error>
+          </mat-form-field>
+        -->
+          <mat-form-field>
+              <mat-label>Employee Name</mat-label>
+              <mat-select formControlName="employeeId">
+                <mat-option *ngFor="let emp of data" [value]="emp.employeeId">
+                  {{emp.firstName}} {{emp.lastName}}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+        
+        <!-- <mat-form-field class="example-full-width">
+          <input matInput placeholder="Review Id" formControlName="reviewId"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!reviewForm.get('reviewId').valid && reviewForm.get('reviewId').touched">Please enter Review</span>
+          </mat-error>
+        </mat-form-field> -->
+        <!--<mat-form-field class="example-full-width">
+          <input matInput placeholder="Reviewer Id" formControlName="reviewerId"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!reviewForm.get('reviewerId').valid && reviewForm.get('reviewerId').touched">Please enter Reviewer</span>
+          </mat-error>
+        </mat-form-field>-->
+        
+        <mat-form-field>
+            <mat-label>Reviewer Name</mat-label>
+            <mat-select formControlName="reviewerId">
+              <mat-option *ngFor="let emp of data" [value]="emp.employeeId">
+                {{emp.firstName}} {{emp.lastName}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Review" formControlName="review"
+                 [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!reviewForm.get('review').valid && reviewForm.get('review').touched">Please enter Review</span>
+          </mat-error>
+        </mat-form-field>
+                <div class="button-row">
+          <button type="submit" [disabled]="!reviewForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
